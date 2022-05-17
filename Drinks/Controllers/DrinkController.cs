@@ -28,6 +28,21 @@ namespace Drinks.Controllers
             return new ObjectResult(response) { StatusCode = (int)HttpStatusCode.OK };
         }
 
+        [HttpGet]
+        [Route("getDrink")]
+        public async Task<IActionResult> GetDrink([FromHeader] string drinkId)
+        {
+            if (string.IsNullOrEmpty(drinkId))
+            {
+                return new ObjectResult(new { Message = "drink id value is missing" })
+                {
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+            var response = await _dbContext.GetInstance().GetDrink(int.Parse(drinkId));
+            return new ObjectResult(response) { StatusCode = (int)HttpStatusCode.OK };
+        }
+
         [HttpPost]
         [Authorize]
         [Route("insert")]

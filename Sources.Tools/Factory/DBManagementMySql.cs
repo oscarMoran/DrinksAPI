@@ -22,9 +22,9 @@ namespace Sources.Tools.Factory
             {
                 using MySqlConnection connection = new MySqlConnection(_connectionString);
                 await connection.OpenAsync();
-                MySqlCommand cmd = new MySqlCommand("Sp_GetDrinks", connection);
+                MySqlCommand cmd = new MySqlCommand("Sp_GetDrink", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@drinkId", drinkId);
+                cmd.Parameters.AddWithValue("drinkIdParam", drinkId);
                 var dr = await cmd.ExecuteReaderAsync();
                 while (await dr.ReadAsync())
                 {

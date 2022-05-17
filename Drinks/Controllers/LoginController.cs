@@ -21,6 +21,7 @@ namespace Drinks.Controllers
         }
 
         [Route("token")]
+        [HttpPost]
         public async Task<IActionResult> GetToken([FromBody] UserRequest mainRequest)
         {
             try
@@ -35,7 +36,7 @@ namespace Drinks.Controllers
                                     }
                                     : new ObjectResult(new { Message = "Get token failed, user not authorized" })
                                     {
-                                        StatusCode = (int)HttpStatusCode.NotFound
+                                        StatusCode = (int)HttpStatusCode.Unauthorized
                                     };
                 }
             }
