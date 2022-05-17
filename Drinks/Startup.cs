@@ -62,6 +62,8 @@ namespace Drinks
                 });
 
 
+
+
             services.AddCors(opt => {
                 opt.AddPolicy( name: "MyPolicy",builder => {
                     builder.WithOrigins("*");
