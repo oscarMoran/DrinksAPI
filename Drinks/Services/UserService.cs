@@ -23,7 +23,11 @@ namespace Drinks.Services
             _dbContext = dbContext;
             _appsettings = appsettings.Value;
         }
-
+        /// <summary>
+        /// Atuhorization method for token
+        /// </summary>
+        /// <param name="model">user information</param>
+        /// <returns></returns>
         public async Task<UserResponse> Auth(UserRequest model)
         {
             UserResponse response = null;
