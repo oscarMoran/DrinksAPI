@@ -44,7 +44,7 @@ namespace Sources.Tools.Models
         [Required]
         public double Price { get; set; }
 
-
+        [DataMember(Name = "InStock")]
         [Required]
         public bool InStock { get; set; }
     }
