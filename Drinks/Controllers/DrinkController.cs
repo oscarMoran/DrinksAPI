@@ -19,7 +19,10 @@ namespace Drinks.Controllers
         {
             _dbContext = dbContext;
         }
-
+        /// <summary>
+        /// retrieves a list of current drinks
+        /// </summary>
+        /// <returns>a list</returns>
         [HttpGet]
         [Route("getlist")]
         public async Task<IActionResult> Index()
@@ -27,7 +30,11 @@ namespace Drinks.Controllers
             var response = await _dbContext.GetInstance().GetDrinks();
             return new ObjectResult(response) { StatusCode = (int)HttpStatusCode.OK };
         }
-
+        /// <summary>
+        /// retrieves a single object
+        /// </summary>
+        /// <param name="drinkId">drink identifier</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("getDrink")]
         public async Task<IActionResult> GetDrink([FromHeader] string drinkId)
@@ -42,7 +49,11 @@ namespace Drinks.Controllers
             var response = await _dbContext.GetInstance().GetDrink(int.Parse(drinkId));
             return new ObjectResult(response) { StatusCode = (int)HttpStatusCode.OK };
         }
-
+        /// <summary>
+        /// Performs a insertion into drinks table
+        /// </summary>
+        /// <param name="request">data to be inserted</param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize]
         [Route("insert")]
@@ -70,7 +81,11 @@ namespace Drinks.Controllers
                 StatusCode = (int)HttpStatusCode.BadRequest
             };
         }
-
+        /// <summary>
+        /// Performs a update into drinks table
+        /// </summary>
+        /// <param name="request">data to be updated</param>
+        /// <returns></returns>
         [HttpPut]
         [Authorize]
         [Route("update")]
