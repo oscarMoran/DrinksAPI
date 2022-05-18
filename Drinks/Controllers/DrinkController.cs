@@ -70,5 +70,27 @@ namespace Drinks.Controllers
                 StatusCode = (int)HttpStatusCode.BadRequest
             };
         }
+
+        [HttpPut]
+        [Authorize]
+        [Route("update")]
+        public async Task<IActionResult> UpdateDrink([FromBody] Drink request)
+        {
+            var drink = await _dbContext.GetInstance().GetDrink(request.DrinkId);
+            if (drink == null)
+            {
+                return new ObjectResult(new { Message = "It couldn't accomplished the transaction : threre's no information related." })
+                {
+                    StatusCode = (int)HttpStatusCode.BadRequest
+                };
+            }
+            var response = await _dbContext.GetInstance().UpdateDrink(request);
+            if (response)
+            {
+                drink = await _dbContext.GetInstance().GetDrink(request.DrinkId);
+                return new ObjectResult(drink) { StatusCode = (int)HttpStatusCode.OK };
+            }
+            return new ObjectResult(new { Message = "Try late, there's was an error" }) { StatusCode = (int)HttpStatusCode.ServiceUnavailable };
+        }
     }
 }

@@ -128,17 +128,17 @@ namespace Sources.Tools.Factory
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                MySqlCommand cmd = new MySqlCommand("Sp_InsertDrinks", connection);
-                cmd.Parameters.AddWithValue("@DrinkId", drinkObj.DrinkId);
-                cmd.Parameters.AddWithValue("@Name", drinkObj.Name);
-                cmd.Parameters.AddWithValue("@Description", drinkObj.Description);
-                cmd.Parameters.AddWithValue("@AlcoholicGrade", drinkObj.AlcoholicGrade);
-                cmd.Parameters.AddWithValue("@OriginCountry", drinkObj.OriginCountry);
-                cmd.Parameters.AddWithValue("@History", drinkObj.History);
-                cmd.Parameters.AddWithValue("@WorldWideRanking", drinkObj.WorldWideRanking);
-                cmd.Parameters.AddWithValue("@SizeBottle", drinkObj.SizeBottle);
-                cmd.Parameters.AddWithValue("@Price", drinkObj.Price);
-                cmd.Parameters.AddWithValue("@InStock", drinkObj.InStock);
+                MySqlCommand cmd = new MySqlCommand("Sp_UpdateDrinks", connection);
+                cmd.Parameters.AddWithValue("DrinkIdParam", drinkObj.DrinkId);
+                cmd.Parameters.AddWithValue("NameParam", drinkObj.Name);
+                cmd.Parameters.AddWithValue("DescriptionParam", drinkObj.Description);
+                cmd.Parameters.AddWithValue("AlcoholicGradeParam", drinkObj.AlcoholicGrade);
+                cmd.Parameters.AddWithValue("OriginCountryParam", drinkObj.OriginCountry);
+                cmd.Parameters.AddWithValue("HistoryParam", drinkObj.History);
+                cmd.Parameters.AddWithValue("WorldWideRankingParam", drinkObj.WorldWideRanking);
+                cmd.Parameters.AddWithValue("SizeBottleParam", drinkObj.SizeBottle);
+                cmd.Parameters.AddWithValue("PriceParam", drinkObj.Price);
+                cmd.Parameters.AddWithValue("InStockParam", drinkObj.InStock);
                 cmd.CommandType = CommandType.StoredProcedure;
                 var dr = await cmd.ExecuteNonQueryAsync();
                 response = dr > 0;
