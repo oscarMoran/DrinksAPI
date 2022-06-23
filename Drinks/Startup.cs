@@ -36,6 +36,8 @@ namespace Drinks
                 return new DbFactory(Configuration.GetSection("ConnectionStrings:MySqlCnStr").Get<string>());
             });
             services.AddScoped<IUserService, UserService>();
+            //services.AddScoped<IEncryptService, RsaEncription>();
+            services.AddScoped<IEncryptService, EncriptUsingCertificate>();
 
             var appsettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appsettingsSection);
