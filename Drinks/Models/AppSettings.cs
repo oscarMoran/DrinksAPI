@@ -8,5 +8,7 @@ namespace Drinks.Models
     public class AppSettings
     {
         public string SecretKey { get; set; }
+        public string PubKeyName { get; set; }
+        public string PrivateKeyName { get; set; }
     }
 }
